@@ -1,0 +1,21 @@
+{% extends 'theblog/base.html' %}
+{% block heading %} Blog App {% endblock %}
+{% block content %}
+
+    <h1>Post</h1>
+    {% for post in object_list %}
+    <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}} - {{post.author.first_name}}  {{post.author.last_name}}</h5>
+    <p class="card-text">{{post.body|slice:":200"}}</p>
+      {% if user.is_authenticated %}
+        <a href="{% url 'update_post' post.pk %}" class="btn btn-success">Edit</a>
+        <a href="{% url 'delete_post' post.pk %}" class="btn btn-success">Delete</a>
+      {% else %}
+      {% endif %}
+      <a href="{% url 'article_details' post.pk %}" id="article_button" class="btn btn-success ">Article Details</a>
+  </div>
+</div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'theblog/base.html' %}
+{% block heading %} Delete Post {% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+ <h1>Add Post</h1>
+ <div class="form-group">
+   <form method="POST">
+    {% csrf_token %}
+    <button  class="btn btn-secondary">Delete</button>
+   </form>
+ </div>
+{% else %}
+ <div class="alert alert-danger" role="alert">
+        You are not logged in.
+ </div>
+{% endif %}
+
+
+
+{% endblock %}

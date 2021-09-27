@@ -1,0 +1,20 @@
+{% extends 'theblog/base.html' %}
+{% block heading %} {{ post.title_tag }} {% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    {{ post.author.first_name }} {{ post.author.last_name }} {{ post.post_date }}
+  </div>
+  {% if user.is_authenticated %}
+    <a href="{% url 'update_post' post.pk %}" class="btn btn-success">Edit</a>
+    <a href="{% url 'delete_post' post.pk %}" class="btn btn-success">Delete</a>
+  {% else %}
+  {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.body }}</p>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+  </div>
+</div>
+
+ {% endblock %}
